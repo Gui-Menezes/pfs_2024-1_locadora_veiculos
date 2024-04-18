@@ -788,6 +788,202 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiClienteCliente extends Schema.CollectionType {
+  collectionName: 'clientes';
+  info: {
+    singularName: 'cliente';
+    pluralName: 'clientes';
+    displayName: 'Cliente';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nome: Attribute.Text & Attribute.Required;
+    cpf: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
+    locacaos: Attribute.Relation<
+      'api::cliente.cliente',
+      'oneToMany',
+      'api::locacao.locacao'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cliente.cliente',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cliente.cliente',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLocacaoLocacao extends Schema.CollectionType {
+  collectionName: 'locacaos';
+  info: {
+    singularName: 'locacao';
+    pluralName: 'locacaos';
+    displayName: 'Locacao';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cliente: Attribute.Relation<
+      'api::locacao.locacao',
+      'manyToOne',
+      'api::cliente.cliente'
+    >;
+    veiculo: Attribute.Relation<
+      'api::locacao.locacao',
+      'manyToOne',
+      'api::veiculo.veiculo'
+    >;
+    data_aluguel: Attribute.Date & Attribute.Required;
+    data_devolucao: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::locacao.locacao',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::locacao.locacao',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMarcaMarca extends Schema.CollectionType {
+  collectionName: 'marcas';
+  info: {
+    singularName: 'marca';
+    pluralName: 'marcas';
+    displayName: 'Marca';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nome: Attribute.String & Attribute.Required;
+    modelos: Attribute.Relation<
+      'api::marca.marca',
+      'oneToMany',
+      'api::modelo.modelo'
+    >;
+    veiculos: Attribute.Relation<
+      'api::marca.marca',
+      'oneToMany',
+      'api::veiculo.veiculo'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::marca.marca',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::marca.marca',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiModeloModelo extends Schema.CollectionType {
+  collectionName: 'modelos';
+  info: {
+    singularName: 'modelo';
+    pluralName: 'modelos';
+    displayName: 'Modelo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nome: Attribute.String & Attribute.Required;
+    marca: Attribute.Relation<
+      'api::modelo.modelo',
+      'manyToOne',
+      'api::marca.marca'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::modelo.modelo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::modelo.modelo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVeiculoVeiculo extends Schema.CollectionType {
+  collectionName: 'veiculos';
+  info: {
+    singularName: 'veiculo';
+    pluralName: 'veiculos';
+    displayName: 'Veiculo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ano_fabricacao: Attribute.Integer & Attribute.Required;
+    chassi: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
+    imagem: Attribute.Media;
+    marca: Attribute.Relation<
+      'api::veiculo.veiculo',
+      'manyToOne',
+      'api::marca.marca'
+    >;
+    locacaos: Attribute.Relation<
+      'api::veiculo.veiculo',
+      'oneToMany',
+      'api::locacao.locacao'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::veiculo.veiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::veiculo.veiculo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +1002,11 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::cliente.cliente': ApiClienteCliente;
+      'api::locacao.locacao': ApiLocacaoLocacao;
+      'api::marca.marca': ApiMarcaMarca;
+      'api::modelo.modelo': ApiModeloModelo;
+      'api::veiculo.veiculo': ApiVeiculoVeiculo;
     }
   }
 }
