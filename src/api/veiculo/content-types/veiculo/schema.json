@@ -21,18 +21,10 @@
       "required": true,
       "unique": true
     },
-    "imagem": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "marca": {
+    "modelo": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::marca.marca",
+      "target": "api::modelo.modelo",
       "inversedBy": "veiculos"
     },
     "locacaos": {
@@ -40,6 +32,13 @@
       "relation": "oneToMany",
       "target": "api::locacao.locacao",
       "mappedBy": "veiculo"
+    },
+    "imagem": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

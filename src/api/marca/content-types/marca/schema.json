@@ -20,12 +20,6 @@
       "relation": "oneToMany",
       "target": "api::modelo.modelo",
       "mappedBy": "marca"
-    },
-    "veiculos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::veiculo.veiculo",
-      "mappedBy": "marca"
     }
   }
 }

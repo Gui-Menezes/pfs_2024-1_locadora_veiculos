@@ -882,11 +882,6 @@ export interface ApiMarcaMarca extends Schema.CollectionType {
       'oneToMany',
       'api::modelo.modelo'
     >;
-    veiculos: Attribute.Relation<
-      'api::marca.marca',
-      'oneToMany',
-      'api::veiculo.veiculo'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -923,6 +918,11 @@ export interface ApiModeloModelo extends Schema.CollectionType {
       'manyToOne',
       'api::marca.marca'
     >;
+    veiculos: Attribute.Relation<
+      'api::modelo.modelo',
+      'oneToMany',
+      'api::veiculo.veiculo'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -955,17 +955,17 @@ export interface ApiVeiculoVeiculo extends Schema.CollectionType {
   attributes: {
     ano_fabricacao: Attribute.Integer & Attribute.Required;
     chassi: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
-    imagem: Attribute.Media;
-    marca: Attribute.Relation<
+    modelo: Attribute.Relation<
       'api::veiculo.veiculo',
       'manyToOne',
-      'api::marca.marca'
+      'api::modelo.modelo'
     >;
     locacaos: Attribute.Relation<
       'api::veiculo.veiculo',
       'oneToMany',
       'api::locacao.locacao'
     >;
+    imagem: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -21,6 +21,12 @@
       "relation": "manyToOne",
       "target": "api::marca.marca",
       "inversedBy": "modelos"
+    },
+    "veiculos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::veiculo.veiculo",
+      "mappedBy": "modelo"
     }
   }
 }
