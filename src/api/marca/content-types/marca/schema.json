@@ -4,7 +4,8 @@
   "info": {
     "singularName": "marca",
     "pluralName": "marcas",
-    "displayName": "Marca"
+    "displayName": "Marca",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +14,8 @@
   "attributes": {
     "nome": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "modelos": {
       "type": "relation",

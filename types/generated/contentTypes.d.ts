@@ -871,12 +871,13 @@ export interface ApiMarcaMarca extends Schema.CollectionType {
     singularName: 'marca';
     pluralName: 'marcas';
     displayName: 'Marca';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    nome: Attribute.String & Attribute.Required;
+    nome: Attribute.String & Attribute.Required & Attribute.Unique;
     modelos: Attribute.Relation<
       'api::marca.marca',
       'oneToMany',
@@ -912,7 +913,7 @@ export interface ApiModeloModelo extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    nome: Attribute.String & Attribute.Required;
+    nome: Attribute.String & Attribute.Required & Attribute.Unique;
     marca: Attribute.Relation<
       'api::modelo.modelo',
       'manyToOne',
