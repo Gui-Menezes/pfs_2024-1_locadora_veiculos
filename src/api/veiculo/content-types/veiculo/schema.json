@@ -33,12 +33,9 @@
       "target": "api::locacao.locacao",
       "mappedBy": "veiculo"
     },
-    "imagem": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false
+    "preco": {
+      "type": "decimal",
+      "required": true
     }
   }
 }

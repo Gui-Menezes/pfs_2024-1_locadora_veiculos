@@ -966,7 +966,7 @@ export interface ApiVeiculoVeiculo extends Schema.CollectionType {
       'oneToMany',
       'api::locacao.locacao'
     >;
-    imagem: Attribute.Media;
+    preco: Attribute.Decimal & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
