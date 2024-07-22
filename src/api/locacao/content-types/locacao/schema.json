@@ -4,7 +4,8 @@
   "info": {
     "singularName": "locacao",
     "pluralName": "locacaos",
-    "displayName": "Locacao"
+    "displayName": "Locacao",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,12 +25,10 @@
       "inversedBy": "locacaos"
     },
     "data_aluguel": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "data_devolucao": {
-      "type": "date",
-      "required": false
+      "type": "date"
     }
   }
 }

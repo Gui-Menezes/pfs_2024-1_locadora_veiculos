@@ -830,6 +830,7 @@ export interface ApiLocacaoLocacao extends Schema.CollectionType {
     singularName: 'locacao';
     pluralName: 'locacaos';
     displayName: 'Locacao';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -845,7 +846,7 @@ export interface ApiLocacaoLocacao extends Schema.CollectionType {
       'manyToOne',
       'api::veiculo.veiculo'
     >;
-    data_aluguel: Attribute.Date & Attribute.Required;
+    data_aluguel: Attribute.Date;
     data_devolucao: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
